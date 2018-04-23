@@ -1,8 +1,21 @@
 class Player:
     def __init__(self, health, mana):
-        self.validate_value(health, mana)
+        if self.validate_value(health):
+            raise TypeError('Value must be a number!')
+        if self.validate_value(mana):
+            raise TypeError('Value must be a number!')
         self.health = health
         self.mana = mana
+        self.__max_hp = health
+        self.__max_mana = mana
+
+    @staticmethod
+    def validate_value(val):
+        if val < 0:
+            raise ValueError('Value cannot be negative!')
+        if not isinstance(val, (int, float)):
+            return True
+        return False
 
     def get_health(self):
         return self.health
@@ -18,25 +31,35 @@ class Player:
     def can_cast(self):
         pass
 
-    @staticmethod
-    def validate_value(*args):
-        for val in args:
-            if val < 0:
-                raise ValueError('Value must be greater than 0!')
-            if not isinstance(val, (int, float)):
-                raise ValueError('Value must be a number!')
-
     def take_damage(self, damage):
-        self.validate_value(damage)
-        self.health -= damage
+        if self.validate_value(damage):
+            raise TypeError('Enter valid damage!')
+
+        if self.health - damage < 0:
+            self.health = 0
+        else:
+            self.health -= damage
 
     def take_healing(self, healing_points):
-        self.validate_value(healing_points)
-        self.health += healing_points
+        if self.validate_value(healing_points):
+            raise TypeError('Enter valid healing points!')
+
+        if not self.is_alive():
+            return False
+
+        if self.health + healing_points > self.__max_hp:
+            self.health = self.__max_hp
+        else:
+            self.health += healing_points
 
     def take_mana(self, mana_points):
-        self.validate_value(mana_points)
-        self.mana += mana_points
+        if self.validate_value(mana_points):
+            raise TypeError('Enter valid mana points!')
+
+        if self.mana + mana_points > self.__max_mana:
+            self.mana = self.__max_mana
+        else:
+            self.mana += mana_points
 
 
 class Hero(Player):
