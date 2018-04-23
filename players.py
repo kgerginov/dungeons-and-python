@@ -11,7 +11,9 @@ class Player:
         return self.mana
 
     def is_alive(self):
-        return self.alive
+        if self.health <= 0:
+            return False
+        return True
 
     def can_cast(self):
         pass
@@ -46,8 +48,5 @@ class Hero(Player):
 
 
 
-asd = Hero(name='asd', title='asdasd', health=200, mana=100, mana_regeneration_rate=2)
-
-print(asd.get_health())
 
 
