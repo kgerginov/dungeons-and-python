@@ -1,4 +1,4 @@
-class Player:
+class Unit:
     def __init__(self, health, mana):
         if self.validate_value(health):
             raise TypeError('Value must be a number!')
@@ -62,12 +62,6 @@ class Player:
             self.mana += mana_points
 
 
-class Hero(Player):
-    def __init__(self, name, title, health, mana, mana_regeneration_rate):
-        super().__init__(health, mana)
-        self.name = name
-        self.title = title
-        self.mana_regeneration_rate = mana_regeneration_rate
 
 
 
