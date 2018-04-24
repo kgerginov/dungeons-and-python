@@ -1,5 +1,5 @@
-from python101.dungeons_and_python.weapon import Weapon
-from python101.dungeons_and_python.spell import Spell
+from weapon import Weapon
+from spell import Spell
 
 
 class Unit:

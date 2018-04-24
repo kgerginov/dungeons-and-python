@@ -1,7 +1,7 @@
 import unittest
-from python101.dungeons_and_python.unit import Unit
-from python101.dungeons_and_python.weapon import Weapon
-from python101.dungeons_and_python.spell import Spell
+from unit import Unit
+from weapon import Weapon
+from spell import Spell
 
 
 class TestSoldiers(unittest.TestCase):
@@ -14,11 +14,11 @@ class TestSoldiers(unittest.TestCase):
         with self.assertRaises(TypeError):
             Unit(health='asd', mana=100)
 
-    def test_create_instance_negative_health_should_rasise_value_error(self):
+    def test_create_instance_negative_health_should_raise_value_error(self):
         with self.assertRaises(ValueError):
             Unit(health=-20, mana=20)
 
-    def test_crevte_instance_negative_mana_should_rasise_value_error(self):
+    def test_create_instance_negative_mana_should_raise_value_error(self):
         with self.assertRaises(ValueError):
             Unit(health=20, mana=-20)
 

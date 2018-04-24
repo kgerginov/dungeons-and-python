@@ -1,4 +1,4 @@
-from python101.dungeons_and_python.unit import Unit
+from unit import Unit
 
 
 class Hero(Unit):
@@ -9,11 +9,11 @@ class Hero(Unit):
         self.mana_regeneration_rate = mana_regeneration_rate
 
     def known_as(self):
-        pass
+        return f'{self.name} the {self.title}'
 
     def attack(self, by):
         if by not in ('weapon', 'spell'):
-            raise ValueError('Enter valid attack type')
+            raise Exception('Enter valid attack type')
         if by == 'weapon':
             if self.weapon is None:
                 raise Exception('No Weapon!')
@@ -26,5 +26,4 @@ class Hero(Unit):
                 return self.spell.damage
             else:
                 raise Exception('Not Enough Mana!')
-
 

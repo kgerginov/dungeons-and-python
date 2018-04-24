@@ -1,7 +1,7 @@
 import unittest
-from python101.dungeons_and_python.hero import Hero
-from python101.dungeons_and_python.weapon import Weapon
-from python101.dungeons_and_python.spell import Spell
+from hero import Hero
+from weapon import Weapon
+from spell import Spell
 
 
 class TestHero(unittest.TestCase):
@@ -36,13 +36,11 @@ class TestHero(unittest.TestCase):
         with self.assertRaises(Exception):
             h.attack(by='spell')
 
-
     def test_attack_no_weapon(self):
         self.setUp()
         with self.assertRaises(Exception):
             h = self.test_hero
             h.attack(by='weapon')
-
 
 
 if __name__ == '__main__':
