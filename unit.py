@@ -1,3 +1,7 @@
+from python101.dungeons_and_python.weapon import Weapon
+from python101.dungeons_and_python.spell import Spell
+
+
 class Unit:
     def __init__(self, health, mana):
         if self.validate_value(health):
@@ -8,6 +12,8 @@ class Unit:
         self.mana = mana
         self.__max_hp = health
         self.__max_mana = mana
+        self.__weapon = None
+        self.__spell = None
 
     @staticmethod
     def validate_value(val):
@@ -29,7 +35,11 @@ class Unit:
         return True
 
     def can_cast(self):
-        pass
+        if self.__spell is None:
+            return False
+        if self.__spell.mana_cost > self.mana:
+            return False
+        return True
 
     def take_damage(self, damage):
         if self.validate_value(damage):
@@ -45,7 +55,7 @@ class Unit:
             raise TypeError('Enter valid healing points!')
 
         if not self.is_alive():
-            return False
+            return 'Cannot heal a corpse!'
 
         if self.health + healing_points > self.__max_hp:
             self.health = self.__max_hp
@@ -60,6 +70,19 @@ class Unit:
             self.mana = self.__max_mana
         else:
             self.mana += mana_points
+
+    def equip_weapon(self, weapon):
+        if not isinstance(weapon, Weapon):
+            raise TypeError('Weapon must be instance of Weapon!')
+        else:
+            self.__weapon = weapon
+
+    def learn_spell(self, spell):
+        if not isinstance(spell, Spell):
+            raise TypeError('Spell mist be instance of Spell!')
+        else:
+            self.__spell = spell
+
 
 
 

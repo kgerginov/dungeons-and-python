@@ -7,3 +7,11 @@ class Hero(Unit):
         self.name = name
         self.title = title
         self.mana_regeneration_rate = mana_regeneration_rate
+
+    def known_as(self):
+        pass
+
+    def attack(self, by):
+        pass
+
+
