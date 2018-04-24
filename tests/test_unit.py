@@ -1,10 +1,14 @@
 import unittest
 from python101.dungeons_and_python.unit import Unit
+from python101.dungeons_and_python.weapon import Weapon
+from python101.dungeons_and_python.spell import Spell
 
 
 class TestSoldiers(unittest.TestCase):
     def setUp(self):
         self.test_soldier = Unit(health=200, mana=100)
+        self.default_weapon = Weapon()
+        self.default_spell = Spell()
 
     def test_create_instance_invalid_input_should_type_error_error(self):
         with self.assertRaises(TypeError):
@@ -47,6 +51,28 @@ class TestSoldiers(unittest.TestCase):
         npc.take_damage(20)
         npc.take_healing(30)
         self.assertEqual(npc.get_health(), 200)
+
+    def test_equip_weapon(self):
+        self.setUp()
+        npc = self.test_soldier
+        npc.equip_weapon(self.default_weapon)
+        self.assertEqual(npc.weapon, self.default_weapon)
+
+    def test_learn_spell(self):
+        self.setUp()
+        npc = self.test_soldier
+        npc.learn_spell(self.default_spell)
+        self.assertEqual(npc.spell, self.default_spell)
+
+    def test_equip_weapon_invalid_instance_raises_type_error(self):
+        self.setUp()
+        with self.assertRaises(TypeError):
+            self.test_soldier.equip_weapon('asd')
+
+    def test_learn_spell_invalid_instance_raises_type_error(self):
+        self.setUp()
+        with self.assertRaises(TypeError):
+            self.test_soldier.learn_spell('asd')
 
     # def test_take_mana_should_not_get_over_max_mana(self):
 
