@@ -12,8 +12,8 @@ class Unit:
         self.mana = mana
         self.__max_hp = health
         self.__max_mana = mana
-        self.__weapon = None
-        self.__spell = None
+        self.weapon = None
+        self.spell = None
 
     @staticmethod
     def validate_value(val):
@@ -35,9 +35,7 @@ class Unit:
         return True
 
     def can_cast(self):
-        if self.__spell is None:
-            return False
-        if self.__spell.mana_cost > self.mana:
+        if self.spell.mana_cost > self.mana:
             return False
         return True
 
@@ -75,13 +73,14 @@ class Unit:
         if not isinstance(weapon, Weapon):
             raise TypeError('Weapon must be instance of Weapon!')
         else:
-            self.__weapon = weapon
+            self.weapon = weapon
 
     def learn_spell(self, spell):
         if not isinstance(spell, Spell):
             raise TypeError('Spell mist be instance of Spell!')
         else:
-            self.__spell = spell
+            self.spell = spell
+
 
 
 
