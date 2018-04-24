@@ -5,6 +5,14 @@ class Spell:
         self.mana_cost = mana_cost
         self.cast_range = cast_range
 
+    def __eq__(self, other):
+        return (
+            self.name == other.name
+            and self.damage == other.damage
+            and self.mana_cost == other.mana_cost
+            and self.cast_range == other.cast_range
+        )
+
     @property
     def get_spell(self):
         sepell_prop = {}
