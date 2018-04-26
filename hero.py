@@ -8,6 +8,9 @@ class Hero(Unit):
         self.title = title
         self.mana_regeneration_rate = mana_regeneration_rate
 
+    def __str__(self):
+        return self.known_as()
+
     def known_as(self):
         return f'{self.name} the {self.title}'
 

@@ -39,6 +39,12 @@ class Unit:
             return False
         return True
 
+    def has_weapon(self):
+        return self.weapon is not None
+
+    def has_spell(self):
+        return self.spell is not None
+
     def take_damage(self, damage):
         if self.validate_value(damage):
             raise TypeError('Enter valid damage!')
@@ -80,6 +86,23 @@ class Unit:
             raise TypeError('Spell mist be instance of Spell!')
         else:
             self.spell = spell
+
+    def get_damage_source(self):
+        if self.has_spell() and self.has_weapon():
+            if self.spell.damage >= self.weapon.damage:
+                if self.can_cast():
+                    return 'spell'
+            return 'weapon'
+
+        elif self.has_spell():
+            if self.can_cast():
+                return 'spell'
+
+        elif self.has_weapon():
+            return 'weapon'
+
+        else:
+            return None
 
 
 
