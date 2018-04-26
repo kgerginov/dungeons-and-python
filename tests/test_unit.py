@@ -4,7 +4,7 @@ from weapon import Weapon
 from spell import Spell
 
 
-class TestSoldiers(unittest.TestCase):
+class TestUnit(unittest.TestCase):
     def setUp(self):
         self.test_soldier = Unit(health=200, mana=100)
         self.default_weapon = Weapon()
