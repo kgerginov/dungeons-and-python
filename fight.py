@@ -31,17 +31,20 @@ class Fight:
         return f'Enemy health is {self.enemy.health}.'
 
     def start_fight(self):
-        print(f'A fight is starter between our hero {self.hero.known_as()} and {str(self.enemy)}!')
+        print(f'A fight is starter between our hero '
+              f'{self.hero.known_as()} and {str(self.enemy)}!')
         while True:
             if self.hero.get_damage_source() == 'spell':
                 self.enemy.take_damage(self.hero.attack(by='spell'))
                 print(f'Hero casts a {self.hero.spell.name},'
-                      f' hits enemy for {self.hero.spell.damage}. {self.get_enemy_health_message()}')
+                      f' hits enemy for {self.hero.spell.damage}. '
+                      f'{self.get_enemy_health_message()}')
 
             if self.hero.get_damage_source() == 'weapon':
                 self.enemy.take_damage(self.hero.attack(by='weapon'))
                 print(f'Hero hits with {self.hero.weapon.name}'
-                      f' for {self.hero.weapon.damage} damage. {self.get_enemy_health_message()}')
+                      f' for {self.hero.weapon.damage} damage. '
+                      f'{self.get_enemy_health_message()}')
 
             if self.hero.get_damage_source() is None:
                 self.hero.health = 0
@@ -73,24 +76,3 @@ class Fight:
             if not self.hero.is_alive():
                 print('Our hero is dead!')
                 break
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

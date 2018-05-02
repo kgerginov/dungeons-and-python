@@ -1,0 +1,12 @@
+#cache
+__pycache__/
+
+#idea
+.idea/
+
+#swp
+.swp
+
+#testcache
+.pytest_cache/
+
