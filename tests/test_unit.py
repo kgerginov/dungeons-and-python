@@ -22,6 +22,22 @@ class TestUnit(unittest.TestCase):
         with self.assertRaises(ValueError):
             Unit(health=20, mana=-20)
 
+    def test_can_cast(self):
+        self.setUp()
+        n = self.test_soldier
+        self.assertFalse(n.can_cast())
+
+    def test_can_cast_not_enough_mana(self):
+        self.setUp()
+        n = self.test_soldier
+        n.learn_spell(Spell('Fireball', damage=50, mana_cost=120, cast_range=3))
+        self.assertFalse(n.can_cast())
+
+    def test_can_cast_all_okay(self):
+        self.setUp()
+        self.test_soldier.learn_spell(self.default_spell)
+        self.assertTrue(self.test_soldier.can_cast())
+
     def test_take_damage_int(self):
         self.setUp()
         npc = self.test_soldier
@@ -45,12 +61,31 @@ class TestUnit(unittest.TestCase):
             npc = self.test_soldier
             npc.take_damage('asd')
 
+    def test_take_damage_raises_value_error_negative_value(self):
+        self.setUp()
+        with self.assertRaises(ValueError):
+            npc = self.test_soldier
+            npc.take_damage(-20)
+
     def test_take_healing_should_not_get_over_max_hp(self):
         self.setUp()
         npc = self.test_soldier
         npc.take_damage(20)
         npc.take_healing(30)
         self.assertEqual(npc.get_health(), 200)
+
+    def test_healing_msg_if_instance_is_dead(self):
+        self.setUp()
+        npc = self.test_soldier
+        npc.health = 0
+        self.assertEqual(npc.take_healing(20), 'Cannot heal a corpse!')
+
+    def test_healing_heals(self):
+        self.setUp()
+        n = self.test_soldier
+        n.take_damage(50)
+        n.take_healing(20)
+        self.assertEqual(n.health, 170)
 
     def test_equip_weapon(self):
         self.setUp()
@@ -74,7 +109,55 @@ class TestUnit(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.test_soldier.learn_spell('asd')
 
-    # def test_take_mana_should_not_get_over_max_mana(self):
+    def test_take_mana_should_not_get_over_max_mana(self):
+        self.setUp()
+        npc = self.test_soldier
+        npc.take_mana(20)
+        npc.take_mana(30)
+        self.assertEqual(npc.get_mana(), 100)
+
+    def test_take_mana_should_raise_type_error_invalid_input(self):
+        self.setUp()
+        npc = self.test_soldier
+        with self.assertRaises(TypeError):
+            npc.take_mana('as')
+
+    def test_take_mana_should_raise_value_error_negative_value(self):
+        self.setUp()
+        n = self.test_soldier
+        with self.assertRaises(ValueError):
+            n.take_mana(-20)
+
+    def test_get_damage_source_weapon_and_spell(self):
+        self.setUp()
+        n = self.test_soldier
+        n.equip_weapon(self.default_weapon)
+        n.learn_spell(Spell(name='asd', damage=20, mana_cost=30, cast_range=2))
+        self.assertEqual(n.get_damage_source(), 'spell')
+
+    def test_get_damage_source_weapon_and_spell_wepaon_higher_damage(self):
+        self.setUp()
+        n = self.test_soldier
+        n.equip_weapon(Weapon(name='asd', damage=50))
+        n.learn_spell(self.default_spell)
+        self.assertEqual(n.get_damage_source(), 'weapon')
+
+    def test_get_damage_source_weapon_only(self):
+        self.setUp()
+        n = self.test_soldier
+        n.equip_weapon(self.default_weapon)
+        self.assertEqual(n.get_damage_source(), 'weapon')
+
+    def test_get_damage_source_spell_only(self):
+        self.setUp()
+        n = self.test_soldier
+        n.learn_spell(self.default_spell)
+        self.assertEqual(n.get_damage_source(), 'spell')
+
+    def test_get_damage_source_no_weapon_spell(self):
+        self.setUp()
+        n = self.test_soldier
+        self.assertEqual(n.get_damage_source(), None)
 
 
 if __name__ == '__main__':
