@@ -68,7 +68,7 @@ class Fight:
                       f'Hero health is {self.hero.health}.')
 
             if self.enemy.get_damage_source() is None:
-                self.hero.take_damage(self.enemy.attack())
+                self.hero.take_damage(self.enemy.damage)
                 print(f'Enemy hits hero'
                       f' for {self.enemy.damage} damage. '
                       f'Hero health is {self.hero.health}.')

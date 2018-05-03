@@ -11,20 +11,3 @@ class Enemy(Unit):
     def __str__(self):
         return f'enemy with {self.health} hp, {self.mana} mana'
 
-    def attack(self, by=''):
-        if by not in ('weapon', 'spell', ''):
-            raise Exception('Enter valid attack type!')
-        if by == 'weapon':
-            if self.weapon is None:
-                raise Exception('No Weapon!')
-            return self.weapon.damage
-        if by == 'spell':
-            if self.spell is None:
-                raise Exception('No Spell Learned!')
-            if self.can_cast():
-                self.mana -= self.spell.mana_cost
-                return self.spell.damage
-            else:
-                raise Exception('Not Enough Mana!')
-        else:
-            return self.damage
