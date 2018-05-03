@@ -35,6 +35,8 @@ class Unit:
         return True
 
     def can_cast(self):
+        if not self.has_spell():
+            return False
         if self.spell.mana_cost > self.mana:
             return False
         return True

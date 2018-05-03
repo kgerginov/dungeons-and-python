@@ -11,23 +11,6 @@ class Enemy(Unit):
     def __str__(self):
         return f'enemy with {self.health} hp, {self.mana} mana'
 
-    def get_damage_source(self):
-        if self.has_spell() and self.has_weapon():
-            if self.spell.damage >= self.weapon.damage:
-                if self.can_cast():
-                    return 'spell'
-            return 'weapon'
-
-        elif self.has_spell():
-            if self.can_cast():
-                return 'spell'
-
-        elif self.has_weapon():
-            return 'weapon'
-
-        else:
-            return None
-
     def attack(self, by=''):
         if by not in ('weapon', 'spell', ''):
             raise Exception('Enter valid attack type!')
