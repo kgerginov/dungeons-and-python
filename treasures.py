@@ -21,7 +21,5 @@ class Treasures:
         }
 
     def pick_treasure(self):
-        loot = {}
-        treasure = choice(list(self.treasures.keys()))
-        loot[treasure] = choice(self.treasures.get(treasure))
-        return loot
+        loot = choice(list(self.treasures.keys()))
+        return {loot: choice(self.treasures.get(loot))}

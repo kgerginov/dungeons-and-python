@@ -4,6 +4,10 @@ from enemy import Enemy
 
 class Fight:
     def __init__(self, hero, enemy):
+        if not isinstance(hero, Hero):
+            raise TypeError('Hero must be instance of hero!')
+        if not isinstance(enemy, Enemy):
+            raise TypeError('Enemy must be instance of Enemy!')
         self._hero = hero
         self._enemy = enemy
 
@@ -27,9 +31,6 @@ class Fight:
             raise TypeError('Enemy must be instance of enemy!')
         self._enemy = enemy
 
-    def get_enemy_health_message(self):
-        return f'Enemy health is {self.enemy.health}.'
-
     def start_fight(self):
         print(f'A fight is starter between our hero '
               f'{self.hero.known_as()} and {str(self.enemy)}!')
@@ -38,13 +39,13 @@ class Fight:
                 self.enemy.take_damage(self.hero.attack(by='spell'))
                 print(f'Hero casts a {self.hero.spell.name},'
                       f' hits enemy for {self.hero.spell.damage}. '
-                      f'{self.get_enemy_health_message()}')
+                      f'Enemy health is {self.enemy.health}.')
 
             if self.hero.get_damage_source() == 'weapon':
                 self.enemy.take_damage(self.hero.attack(by='weapon'))
                 print(f'Hero hits with {self.hero.weapon.name}'
                       f' for {self.hero.weapon.damage} damage. '
-                      f'{self.get_enemy_health_message()}')
+                      f'Enemy health is {self.enemy.health}.')
 
             if self.hero.get_damage_source() is None:
                 self.hero.health = 0
