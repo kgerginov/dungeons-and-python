@@ -1,6 +1,8 @@
 from random import choice
-from weapon import Weapon
+
 from spell import Spell
+
+from src.weapon import Weapon
 
 
 class Treasures:

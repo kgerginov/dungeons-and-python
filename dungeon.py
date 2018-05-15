@@ -1,4 +1,4 @@
-from hero import Hero
+from src.hero import Hero
 
 
 class Dungeon:
@@ -15,7 +15,7 @@ class Dungeon:
         self.array_map = self.read_map
         self.hero_position = None
         self.enemy_position = None
-        self.spawning_positions = self.find_spawining_points
+        self.spawning_positions = self.find_spawning_points
 
     @property
     def read_map(self):
@@ -48,7 +48,7 @@ class Dungeon:
         self.array_map[self.hero_position[0]][self.hero_position[1]] = Dungeon.HERO
 
     @property
-    def find_spawining_points(self):
+    def find_spawning_points(self):
         spawn_points = []
         for cuurent_row, row in enumerate(self.array_map):
             for current_col, col in enumerate(row):

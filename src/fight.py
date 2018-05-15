@@ -1,5 +1,5 @@
-from hero import Hero
-from enemy import Enemy
+from src.enemy import Enemy
+from src.hero import Hero
 
 
 class Fight:

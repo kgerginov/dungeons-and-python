@@ -1,9 +1,11 @@
 import unittest
+
 from hero import Hero
-from enemy import Enemy
-from weapon import Weapon
 from spell import Spell
-from fight import Fight
+
+from src.enemy import Enemy
+from src.fight import Fight
+from src.weapon import Weapon
 
 
 class TestFight(unittest.TestCase):

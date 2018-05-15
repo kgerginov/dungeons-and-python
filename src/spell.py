@@ -13,11 +13,3 @@ class Spell:
             and self.cast_range == other.cast_range
         )
 
-    @property
-    def get_spell(self):
-        sepell_prop = {}
-        sepell_prop['name'] = self.name
-        sepell_prop['damage'] = self.damage
-        sepell_prop['mana_cost'] = self.mana_cost
-        sepell_prop['cast_range'] = self.cast_range
-        return sepell_prop

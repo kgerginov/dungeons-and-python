@@ -8,10 +8,3 @@ class Weapon:
             self.name == other.name
             and self.damage == other.damage
         )
-
-    @property
-    def get_weapon(self):
-        weapon_prop = {}
-        weapon_prop['name'] = self.name
-        weapon_prop['damage'] = self.damage
-        return weapon_prop

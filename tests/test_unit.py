@@ -1,7 +1,9 @@
 import unittest
-from unit import Unit
-from weapon import Weapon
+
 from spell import Spell
+from weapon import Weapon
+
+from src.unit import Unit
 
 
 class TestUnit(unittest.TestCase):
