@@ -1,5 +1,4 @@
-from spell import Spell
-
+from src.spell import Spell
 from src.weapon import Weapon
 
 

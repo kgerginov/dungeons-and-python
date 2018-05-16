@@ -1,21 +1,18 @@
 from src.hero import Hero
+from map_generator.dungeon_map_generator import Generator
+from random import choice
 
 
 class Dungeon:
-    SPAWNING_POINT = 'S'
-    EXIT = 'G'
-    WALL = '#'
-    WALKABLE_PATH = '.'
-    TRESURE = 'T'
-    ENEMY = 'E'
-    HERO = "H"
 
-    def __init__(self, dungeon_map):
-        self.dungeon_map = open(dungeon_map)
-        self.array_map = self.read_map
+
+    def __init__(self, map_size='small'):
+        self.dungeon_map = self.create_map
         self.hero_position = None
         self.enemy_position = None
         self.spawning_positions = self.find_spawning_points
+
+
 
     @property
     def read_map(self):
@@ -65,11 +62,8 @@ class NoMoreSpawnPoints:
     'Ther is no more spawning positions'
 
 
-map = Dungeon("level1.txt")
-print(map.print_map())
-print()
-some_hero_instance = Hero(name="Bron", title="Dragonslayer", health=100, mana=100, mana_regeneration_rate=2)
-map.spawn(some_hero_instance)
-print(map.print_map())
 
-map.close_file()
+# m = ['               ####      ', '  ##############..#######', '  #.....................#', '  #.###...........#####.#', '  #.# #...######..#####.#', '  ### #...............###', '      ######.....###..#  ', '           #....####..#  ', '           #####......#  ', '               ########  ', '                         ', '                         ', '               ####      ', '  ##############..#######', '  #.....................#', '  #.###...........#####.#', '  #.# #...######..#####.#', '  ### #...............###', '      ######.....###..#  ', '           #....####..#  ', '           #####......#  ', '               ########  ', '                         ', '                         ']
+#
+# _place_points_of_interest(m)
+

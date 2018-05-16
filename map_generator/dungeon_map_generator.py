@@ -20,8 +20,8 @@ CHARACTER_TILES = {'stone': ' ',
 
 
 class Generator:
-    def __init__(self, width=64, height=32, max_rooms=15, min_room_xy=5,
-                 max_room_xy=10, rooms_overlap=False, random_connections=1,
+    def __init__(self, width=32, height=16, max_rooms=7, min_room_xy=4,
+                 max_room_xy=8, rooms_overlap=False, random_connections=1,
                  random_spurs=3, tiles=CHARACTER_TILES):
         self.width = width
         self.height = height
@@ -294,7 +294,7 @@ class Generator:
                 if col == 'wall':
                     tmp_tiles.append(self.tiles['wall'])
 
-            self.tiles_level.append(''.join(tmp_tiles))
+            self.tiles_level.append(tmp_tiles)
 
         # print('Room List: ', self.room_list)
         # print('\nCorridor List: ', self.corridor_list)
@@ -303,7 +303,6 @@ class Generator:
 
 
 if __name__ == '__main__':
-    gen = Generator()
+    gen = Generator(width=16, height=8, max_room_xy=4, min_room_xy=2)
     gen.gen_level()
-    for a in gen.gen_tiles_level():
-        print()
+    print(gen.gen_tiles_level())
