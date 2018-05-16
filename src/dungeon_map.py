@@ -22,18 +22,23 @@ class DungeonMap:
         if map_size == 'large':
             m = Generator(width=64, height=32)
             m.gen_level()
-            layout = self._place_points_of_interest(base_layout=m.gen_tiles_level(),
-                                                    num_of_chests=5,
-                                                    num_of_enemies=4
-                                                    )
+            layout = self._place_points_of_interest(
+                    base_layout=m.gen_tiles_level(),
+                    num_of_chests=5,
+                    num_of_enemies=4
+                    )
 
         if map_size == 'small':
-            m = Generator(width=32, height=16, max_rooms=7,
-                          min_room_xy=4, max_room_xy=8)
+            m = Generator(
+                width=32, height=16, max_rooms=7,
+                min_room_xy=4, max_room_xy=8
+                )
             m.gen_level()
-            layout = self._place_points_of_interest(base_layout=m.gen_tiles_level(),
-                                                    num_of_chests=2,
-                                                    num_of_enemies=2)
+            layout = self._place_points_of_interest(
+                        base_layout=m.gen_tiles_level(),
+                        num_of_chests=2,
+                        num_of_enemies=2
+                    )
 
         return layout
 
@@ -83,5 +88,6 @@ class DungeonMap:
         return '\n'.join([''.join(line) for line in self.layout])
 
 
-m = DungeonMap(map_size='small')
-print(m.print_map())
+if __name__ == '__main__':
+    m = DungeonMap(map_size='small')
+    print(m.print_map())

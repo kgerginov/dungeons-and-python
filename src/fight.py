@@ -41,7 +41,7 @@ class Fight:
                       f' hits enemy for {self.hero.spell.damage}. '
                       f'Enemy health is {self.enemy.health}.')
 
-            if self.hero.get_damage_source() == 'weapon':
+            elif self.hero.get_damage_source() == 'weapon':
                 self.enemy.take_damage(self.hero.attack(by='weapon'))
                 print(f'Hero hits with {self.hero.weapon.name}'
                       f' for {self.hero.weapon.damage} damage. '
@@ -62,7 +62,7 @@ class Fight:
                       f' hits enemy for {self.enemy.spell.damage}. '
                       f'Hero health is {self.hero.health}.')
 
-            if self.enemy.get_damage_source() == 'weapon':
+            elif self.enemy.get_damage_source() == 'weapon':
                 self.hero.take_damage(self.enemy.attack(by='weapon'))
                 print(f'Enemy hits with {self.enemy.weapon.name}'
                       f' for {self.enemy.weapon.damage} damage. '

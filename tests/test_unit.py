@@ -1,7 +1,7 @@
 import unittest
 
-from spell import Spell
-from weapon import Weapon
+from src.spell import Spell
+from src.weapon import Weapon
 
 from src.unit import Unit
 
