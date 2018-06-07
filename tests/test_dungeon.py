@@ -1,7 +1,7 @@
 import unittest
 
-from dungeon import Dungeon
-from src.dungeon_map import DungeonMap
+from dungeon2 import Dungeon
+from src.dungeon import DungeonMap
 
 
 class TestDungeon(unittest.TestCase):

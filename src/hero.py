@@ -1,8 +1,8 @@
 from src.unit import Unit
 
-
+# todo: Implement Inventory
 class Hero(Unit):
-    def __init__(self, name, title, health, mana, mana_regeneration_rate):
+    def __init__(self, *, name, title, health, mana, mana_regeneration_rate):
         super().__init__(health, mana)
         self.name = name
         self.title = title

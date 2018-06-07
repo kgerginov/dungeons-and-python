@@ -61,7 +61,7 @@ class Unit:
             raise TypeError('Enter valid healing points!')
 
         if not self.is_alive():
-            return 'Cannot heal a corpse!'
+            raise Exception('Cannot heal a corpse!')
 
         if self.health + healing_points > self.__max_hp:
             self.health = self.__max_hp
@@ -80,12 +80,18 @@ class Unit:
     def equip_weapon(self, weapon):
         if not isinstance(weapon, Weapon):
             raise TypeError('Weapon must be instance of Weapon!')
+        elif self.has_weapon():
+            if self.weapon.damage > weapon.damage:
+                raise ValueError('You have a better weapon already!')
         else:
             self.weapon = weapon
 
     def learn_spell(self, spell):
         if not isinstance(spell, Spell):
             raise TypeError('Spell mist be instance of Spell!')
+        elif self.has_spell():
+            if self.spell.damage > spell.damage:
+                raise ValueError('You have a better spell already!')
         else:
             self.spell = spell
 

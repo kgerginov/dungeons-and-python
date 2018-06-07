@@ -1,11 +1,9 @@
 from random import choice
-
-from spell import Spell
-
+from src.spell import Spell
 from src.weapon import Weapon
 
 
-class Treasures:
+class Treasure:
     def __init__(self):
         self.treasures = {
             'health_potion': [10, 20, 30, 50, 100],
@@ -24,4 +22,9 @@ class Treasures:
 
     def pick_treasure(self):
         loot = choice(list(self.treasures.keys()))
-        return {loot: choice(self.treasures.get(loot))}
+        return loot, choice(self.treasures.get(loot))
+
+
+if __name__ == '__main__':
+    t = Treasure()
+    print(t.pick_treasure())
